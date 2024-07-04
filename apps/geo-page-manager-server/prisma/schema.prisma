@@ -1,0 +1,90 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model GeneratedPage {
+  content    String?
+  createdAt  DateTime                 @default(now())
+  createdBy  String?
+  dataFile   DataFile?                @relation(fields: [dataFileId], references: [id])
+  dataFileId String?
+  id         String                   @id @default(cuid())
+  metaData   Json?
+  status     EnumGeneratedPageStatus?
+  template   Template?                @relation(fields: [templateId], references: [id])
+  templateId String?
+  title      String?
+  updatedAt  DateTime                 @updatedAt
+}
+
+model DataFile {
+  createdAt       DateTime               @default(now())
+  createdBy       String?
+  fileUrl         String?
+  generatedImages GeneratedImage[]
+  generatedPages  GeneratedPage[]
+  id              String                 @id @default(cuid())
+  name            String?
+  typeField       EnumDataFileTypeField?
+  updatedAt       DateTime               @updatedAt
+}
+
+model Template {
+  createdAt       DateTime               @default(now())
+  createdBy       String?
+  file            Json?
+  generatedImages GeneratedImage[]
+  generatedPages  GeneratedPage[]
+  id              String                 @id @default(cuid())
+  name            String?
+  typeField       EnumTemplateTypeField?
+  updatedAt       DateTime               @updatedAt
+}
+
+model GeneratedImage {
+  createdAt  DateTime  @default(now())
+  createdBy  String?
+  dataFile   DataFile? @relation(fields: [dataFileId], references: [id])
+  dataFileId String?
+  fileUrl    String?
+  id         String    @id @default(cuid())
+  metaData   Json?
+  name       String?
+  template   Template? @relation(fields: [templateId], references: [id])
+  templateId String?
+  updatedAt  DateTime  @updatedAt
+}
+
+model User {
+  createdAt DateTime      @default(now())
+  email     String?       @unique
+  firstName String?
+  id        String        @id @default(cuid())
+  lastName  String?
+  password  String
+  role      EnumUserRole?
+  roles     Json
+  updatedAt DateTime      @updatedAt
+  username  String        @unique
+}
+
+enum EnumGeneratedPageStatus {
+  Option1
+}
+
+enum EnumDataFileTypeField {
+  Option1
+}
+
+enum EnumTemplateTypeField {
+  Option1
+}
+
+enum EnumUserRole {
+  Option1
+}
