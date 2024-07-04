@@ -1,0 +1,55 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model DataFile {
+  createdAt       DateTime               @default(now())
+  createdBy       String?
+  fileUrl         String?
+  generatedImages GeneratedImage[]
+  generatedPages  GeneratedPage[]
+  id              String                 @id @default(cuid())
+  name            String?
+  typeField       EnumDataFileTypeField?
+  updatedAt       DateTime               @updatedAt
+}
+
+model GeneratedImage {
+  createdAt  DateTime  @default(now())
+  createdBy  String?
+  dataFile   DataFile? @relation(fields: [dataFileId], references: [id])
+  dataFileId String?
+  fileUrl    String?
+  id         String    @id @default(cuid())
+  metaData   Json?
+  name       String?
+  templateId String?
+  updatedAt  DateTime  @updatedAt
+}
+
+model GeneratedPage {
+  content    String?
+  createdAt  DateTime                 @default(now())
+  createdBy  String?
+  dataFile   DataFile?                @relation(fields: [dataFileId], references: [id])
+  dataFileId String?
+  id         String                   @id @default(cuid())
+  metaData   Json?
+  status     EnumGeneratedPageStatus?
+  templateId String?
+  title      String?
+  updatedAt  DateTime                 @updatedAt
+}
+
+enum EnumDataFileTypeField {
+  Option1
+}
+
+enum EnumGeneratedPageStatus {
+  Option1
+}
