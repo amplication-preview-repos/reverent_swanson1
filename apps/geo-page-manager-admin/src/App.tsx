@@ -5,22 +5,6 @@ import { theme } from "./theme/theme";
 import Login from "./Login";
 import "./App.scss";
 import Dashboard from "./pages/Dashboard";
-import { GeneratedPageList } from "./generatedPage/GeneratedPageList";
-import { GeneratedPageCreate } from "./generatedPage/GeneratedPageCreate";
-import { GeneratedPageEdit } from "./generatedPage/GeneratedPageEdit";
-import { GeneratedPageShow } from "./generatedPage/GeneratedPageShow";
-import { DataFileList } from "./dataFile/DataFileList";
-import { DataFileCreate } from "./dataFile/DataFileCreate";
-import { DataFileEdit } from "./dataFile/DataFileEdit";
-import { DataFileShow } from "./dataFile/DataFileShow";
-import { TemplateList } from "./template/TemplateList";
-import { TemplateCreate } from "./template/TemplateCreate";
-import { TemplateEdit } from "./template/TemplateEdit";
-import { TemplateShow } from "./template/TemplateShow";
-import { GeneratedImageList } from "./generatedImage/GeneratedImageList";
-import { GeneratedImageCreate } from "./generatedImage/GeneratedImageCreate";
-import { GeneratedImageEdit } from "./generatedImage/GeneratedImageEdit";
-import { GeneratedImageShow } from "./generatedImage/GeneratedImageShow";
 import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
@@ -51,34 +35,6 @@ const App = (): React.ReactElement => {
         dashboard={Dashboard}
         loginPage={Login}
       >
-        <Resource
-          name="GeneratedPage"
-          list={GeneratedPageList}
-          edit={GeneratedPageEdit}
-          create={GeneratedPageCreate}
-          show={GeneratedPageShow}
-        />
-        <Resource
-          name="DataFile"
-          list={DataFileList}
-          edit={DataFileEdit}
-          create={DataFileCreate}
-          show={DataFileShow}
-        />
-        <Resource
-          name="Template"
-          list={TemplateList}
-          edit={TemplateEdit}
-          create={TemplateCreate}
-          show={TemplateShow}
-        />
-        <Resource
-          name="GeneratedImage"
-          list={GeneratedImageList}
-          edit={GeneratedImageEdit}
-          create={GeneratedImageCreate}
-          show={GeneratedImageShow}
-        />
         <Resource
           name="User"
           list={UserList}

@@ -1,8 +1,4 @@
 import { Module } from "@nestjs/common";
-import { GeneratedPageModule } from "./generatedPage/generatedPage.module";
-import { DataFileModule } from "./dataFile/dataFile.module";
-import { TemplateModule } from "./template/template.module";
-import { GeneratedImageModule } from "./generatedImage/generatedImage.module";
 import { UserModule } from "./user/user.module";
 import { AuthenticationModule } from "./Authentication/authentication.module";
 import { HealthModule } from "./health/health.module";
@@ -22,10 +18,6 @@ import { AuthModule } from "./auth/auth.module";
   imports: [
     ACLModule,
     AuthModule,
-    GeneratedPageModule,
-    DataFileModule,
-    TemplateModule,
-    GeneratedImageModule,
     UserModule,
     AuthenticationModule,
     HealthModule,
